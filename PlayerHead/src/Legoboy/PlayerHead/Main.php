@@ -76,7 +76,7 @@ class Main extends PluginBase implements Listener{
 						foreach($inv->getContents() as $i){
 							if($i->equals($head, true, false)){
 								$count = $i->getCount();
-								$value += round(EconomyAPI::getInstance()->myMoney($i->getCustomName()) * $this->getConfig()->get('heads-value-percentage', 0.1));
+								$value += round(EconomyAPI::getInstance()->myMoney($i->getCustomName()) * $this->getConfig()->get('heads-value-percentage', 0.1) === true);
 								$sold += $count;
 								$sender->getInventory()->removeItem($i);
 								return true;
@@ -99,7 +99,7 @@ class Main extends PluginBase implements Listener{
 							if(!isset($value[$killed])) $value[$killed] = 0;
 							$count = $i->getCount();
 							$list[$killed] += $count;
-							$value[$killed] += round($count * EconomyAPI::getInstance()->myMoney($killed) * $this->getConfig()->get('heads-value-percentage', 0.1));
+							$value[$killed] += round($count * EconomyAPI::getInstance()->myMoney($killed) * $this->getConfig()->get('heads-value-percentage', 0.1) === true);
 						}
 					}
 					$sender->sendMessage(TextFormat::GOLD . str_repeat('-', 15));
@@ -127,10 +127,10 @@ class Main extends PluginBase implements Listener{
 				$head->setCustomName($entity->getName());
 				$killer->getInventory()->addItem($head);
 				
-				$cost = round(EconomyAPI::getInstance()->myMoney($entity) * $this->getConfig()->get('heads-value-percentage', 0.1));
+				$cost = round(EconomyAPI::getInstance()->myMoney($entity) * $this->getConfig()->get('heads-value-percentage', 0.1) === true);
 				EconomyAPI::getInstance()->reduceMoney($entity, $cost, true, 'PLUGIN');
 				$entity->sendMessage("You were killed by $kName, and lost $$cost.");
-				if($this->getConfig()->get('heads-place', false)){
+				if($this->getConfig()->get('heads-place', false) === true){
 				return true;
 					
 				}
