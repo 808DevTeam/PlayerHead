@@ -41,7 +41,7 @@ class Main extends PluginBase implements Listener{
 			}
 			if(!isset($args[0])){
 				$sender->sendMessage(TextFormat::GREEN . str_repeat('-', 15));
-				$sender->sendMessage(TextFormat::YELLOW . '- /head sell [player] > Sells either the specified player\'s head in your inventory, or all your heads.');
+				$sender->sendMessage(TextFormat::YELLOW . '- /head sell (player) > Sells either the specified player\'s head in your inventory, or all your heads.');
 				$sender->sendMessage(TextFormat::YELLOW . '- /head list > Lists all the heads you have.');
 				$sender->sendMessage(TextFormat::GREEN . str_repeat('-', 15));
 				return true;
